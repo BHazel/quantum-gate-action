@@ -10,4 +10,4 @@ RUN pip install numpy
 
 COPY action/*.py /action/
 
-ENTRYPOINT python /action/main.py --qubit-state-0 ${QUBIT_STATE_0} --qubit-state-1 ${QUBIT_STATE_1} --gate ${GATE} --output ${OUTPUT}
+ENTRYPOINT python /action/main.py --qubit-state-0=${QUBIT_STATE_0} --qubit-state-1=${QUBIT_STATE_1} --gate=${GATE} --output=${OUTPUT}

@@ -14,6 +14,8 @@ from qubit import (
     is_valid_qubit_state
 )
 
+ROUND_DIGITS: int = 4
+
 parser: ArgumentParser = ArgumentParser(description='Applies a quantum gate to a qubit.')
 parser.add_argument('-0', '--qubit-state-0',
                     type=float,
@@ -44,7 +46,7 @@ qubit_state_1: float = arguments.qubit_state_1
 gate: str = arguments.gate
 output: str = arguments.output
 
-if not is_valid_qubit_state(qubit_state_0, qubit_state_1):
+if not is_valid_qubit_state(qubit_state_0, qubit_state_1, round_digits=ROUND_DIGITS):
     raise ValueError('Invalid qubit state.')
 
 qubit: np.ndarray = create_qubit(qubit_state_0, qubit_state_1)
@@ -53,7 +55,7 @@ gate_matrix: np.ndarray = get_gate_matrix(gate)
 if gate_matrix is None:
     raise ValueError('Invalid quantum gate.')
 
-result: np.ndarray = apply_quantum_gate(gate_matrix, qubit, round_digits=4)
+result: np.ndarray = apply_quantum_gate(gate_matrix, qubit, round_digits=ROUND_DIGITS)
 result_sanitised: list[float] = convert_qubit_to_float(result)
 
 result_output = io.StringIO()
