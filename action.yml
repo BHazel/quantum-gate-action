@@ -1,0 +1,28 @@
+name: Quantum Gate
+description: Simulates a quantum gate on a qubit.
+author: Benedict W. Hazel
+inputs:
+  qubit-state-0:
+    description: The initial value of the qubit 0 component.  Valid value can be between 0 and 1.
+    required: true
+    default: "1.0"
+  qubit-state-1:
+    description: The initial value of the qubit 1 component.  Valid value can be between 0 and 1.
+    required: true
+    default: "0.0"
+  gate:
+    description: The quantum gate to apply to the qubit.
+    required: true
+    default: "I"
+outputs:
+  final-qubit-state-0:
+    description: The final value of the qubit 0 component.
+  final-qubit-state-1:
+    description: The final value of the qubit 1 component.
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    QUBIT_STATE_0: ${{ inputs.qubit-state-0 }}
+    QUBIT_STATE_1: ${{ inputs.qubit-state-1 }}
+    GATE: ${{ inputs.gate }}
