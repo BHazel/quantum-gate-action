@@ -11,14 +11,22 @@ inputs:
     required: true
     default: "0.0"
   gate:
-    description: The quantum gate to apply to the qubit.
+    description: The quantum gate to apply to the qubit.  Values can be H, I, X or Z.
     required: true
     default: "I"
+  shots:
+    description: The number of times to apply the gate and measure the qubit.  If 0 no measurement will be performed.
+    required: false
+    default: "0"
 outputs:
   final-qubit-state-0:
     description: The final value of the qubit 0 component.
   final-qubit-state-1:
     description: The final value of the qubit 1 component.
+  measurement-0-count:
+    description: The number of times the qubit measurement was 0.
+  measurement-1-count:
+    description: The number of times the qubit measurement was 1.
 runs:
   using: docker
   image: Dockerfile
@@ -26,3 +34,4 @@ runs:
     QUBIT_STATE_0: ${{ inputs.qubit-state-0 }}
     QUBIT_STATE_1: ${{ inputs.qubit-state-1 }}
     GATE: ${{ inputs.gate }}
+    SHOTS: ${{ inputs.shots }}

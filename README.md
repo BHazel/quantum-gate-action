@@ -1,6 +1,6 @@
 # Quantum Gate Action
 
-This action simulates applying a quantum logic gate on a qubit and returns the resulting state vector.
+This GitHub Action simulates applying a quantum logic gate on a qubit.  It returns the resulting state vector and optionally the measurement of the qubit for a specified number of shots.
 
 ## Inputs
 
@@ -34,6 +34,14 @@ Possible Values: H, I, X, Z
 
 **Default:** `I`
 
+### `shots`
+
+The number of times to apply the quantum gate and measure the qubit in its final state.
+
+If 0 no measurement will be performed.
+
+**Default:** `0`
+
 ## Outputs
 
 ### `final-qubit-state-0`
@@ -44,6 +52,14 @@ The final value of the qubit 0 component.
 
 The final value of the qubit 1 component.
 
+### `measurement-0-count`
+
+The number of times the qubit measurement was 0 (if measurement is requested).
+
+### `measurement-1-count`
+
+The number of times the qubit measurement was 1 (if measurement is requested).
+
 ## Example Usage
 
 ```yml
@@ -52,4 +68,5 @@ with:
     qubit-state-0: 0.0
     qubit-state-1: 1.0
     gate: H
+    shots: 100
 ```

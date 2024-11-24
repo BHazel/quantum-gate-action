@@ -69,3 +69,16 @@ def convert_qubit_to_float(qubit: np.ndarray) -> list[float]:
         float(qubit[0][0]),
         float(qubit[1][0])
     ]
+
+def measure_qubit(qubit: np.ndarray) -> int:
+    """
+    Measures a qubit.
+
+    Args:
+        qubit (np.ndarray): The qubit.
+    
+    Returns:
+        int: The value from the measurement.
+    """
+    zero_probability = float(qubit[0][0]) ** 2
+    return 0 if np.random.rand() < zero_probability else 1
